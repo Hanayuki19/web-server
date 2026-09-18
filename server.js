@@ -1,6 +1,7 @@
 import express from 'express';
 
 const app = express();
+app.set("view engine", "ejs");
 const PORT = 3000;
 
 app.get('/', (req, res) => {
@@ -25,6 +26,10 @@ app.get('/count', (req, res) => {
   res.send(`Counting from ${from} to ${to}.`);
 });
 
+app.get("/about", (req, res) => {
+  res.render("about", { title: "About" });
+});
+
 app.get('/api/info', (req, res) => {
   res.json({ course: 'COMPSCI 326', topic: 'Web Programming'});
 });
@@ -36,4 +41,3 @@ app.get('/api/error', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
-
